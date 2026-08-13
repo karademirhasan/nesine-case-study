@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@tanstack/react-query": "^5.101.4",
+    "@tanstack/react-virtual": "^3.14.9",
     "axios": "^1.19.0",
     "babel-plugin-jsx-control-statements": "^4.1.2",
     "dotenv": "^17.4.2",
