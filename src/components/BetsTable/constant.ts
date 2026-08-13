@@ -1,4 +1,9 @@
-export const BETS_TABLE_COLuMNS = [
+export interface IBetsTableColumns {
+    field: string
+    title: string
+}
+
+export const BETS_TABLE_COLuMNS: IBetsTableColumns[] = [
     {
         field: 'name',
         title: 'Event Count',

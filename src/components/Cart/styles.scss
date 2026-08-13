@@ -1,0 +1,23 @@
+.cart {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 500px;
+  min-height: 20px;
+  background: white;
+  border: 2px solid black;
+  padding: 20px;
+  .list-bets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    .item-bet {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid gray;
+    }
+  }
+}

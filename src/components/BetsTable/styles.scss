@@ -69,6 +69,13 @@
         display: flex;
         gap: 10px;
       }
+      &.cell-odds {
+        cursor: pointer;
+        user-select: none;
+      }
+      &.cell-selected {
+        background-color: yellow;
+      }
     }
   }
 }

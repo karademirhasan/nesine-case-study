@@ -23,7 +23,7 @@
       "babel-plugin-jsx-control-statements"
     ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src/**/*"],
