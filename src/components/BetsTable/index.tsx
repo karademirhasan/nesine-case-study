@@ -6,7 +6,12 @@ import {QUERY_KEYS} from "@/constant";
 import ImageLoading from '@/assets/images/loading.gif'
 
 import './styles.scss'
-import {BETS_TABLE_COLuMNS} from "@/components/BetsTable/constant";
+import {
+    BETS_ODDS_GROUPS,
+    BETS_TABLE_COLuMNS, DOUBLE_CHANCE_SELECTIONS,
+    MATCH_RESULT_SELECTIONS,
+    OVER_UNDER_SELECTIONS
+} from "@/components/BetsTable/constant";
 import {CSSProperties, Fragment, useRef} from "react";
 import {useVirtualizer} from "@tanstack/react-virtual";
 
@@ -17,6 +22,8 @@ declare let itemBetColumn: {
 
 declare let itemBet: any
 declare let virtualItemBet: any
+
+
 
 
 const BetsTable = () => {
@@ -97,27 +104,27 @@ const BetsTable = () => {
                                                     <span>{itemBet.N}</span>
                                                 </div>
                                                 <div className='bets-table-cell'>Yorumlar</div>
-                                                <div className='bets-table-cell'>{itemBet?.['OCG']?.[1]?.['MBS']}</div>
+                                                <div className='bets-table-cell'>{itemBet?.OCG?.[BETS_ODDS_GROUPS.MATCH_RESULT]?.MBS}</div>
                                                 <div
-                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[1]?.['OC']?.[0]?.['O']}</div>
+                                                    className='bets-table-cell'>{itemBet?.OCG?.[BETS_ODDS_GROUPS.MATCH_RESULT]?.OC?.[MATCH_RESULT_SELECTIONS.HOME]?.O}</div>
                                                 <div
-                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[1]?.['OC']?.[1]?.['O']}</div>
+                                                    className='bets-table-cell'>{itemBet?.OCG?.[BETS_ODDS_GROUPS.MATCH_RESULT]?.OC?.[MATCH_RESULT_SELECTIONS.DRAW]?.O}</div>
                                                 <div className='bets-table-cell'></div>
                                                 <div
-                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[5]?.['OC']?.[25]?.['O']}</div>
+                                                    className='bets-table-cell'>{itemBet?.OCG?.[BETS_ODDS_GROUPS.OVER_UNDER]?.OC?.[OVER_UNDER_SELECTIONS.UNDER]?.O}</div>
                                                 <div
-                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[5]?.['OC']?.[26]?.['O']}</div>
-                                                <div className='bets-table-cell'></div>
-                                                <div className='bets-table-cell'></div>
+                                                    className='bets-table-cell'>{itemBet?.OCG?.[BETS_ODDS_GROUPS.OVER_UNDER]?.OC?.[OVER_UNDER_SELECTIONS.OVER]?.O}</div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
+                                                <div className='bets-table-cell'></div>
+                                                <div className='bets-table-cell'></div>
                                                 <div
-                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[2]?.['OC']?.[3]?.['O']}</div>
+                                                    className='bets-table-cell'>{itemBet?.OCG?.[BETS_ODDS_GROUPS.DOUBLE_CHANCE]?.OC?.[DOUBLE_CHANCE_SELECTIONS.HOME_OR_DRAW]?.O}</div>
                                                 <div
-                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[2]?.['OC']?.[4]?.['O']}</div>
+                                                    className='bets-table-cell'>{itemBet?.OCG?.[BETS_ODDS_GROUPS.DOUBLE_CHANCE]?.OC?.[DOUBLE_CHANCE_SELECTIONS.HOME_OR_AWAY]?.O}</div>
                                                 <div
-                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[2]?.['OC']?.[5]?.['O']}</div>
+                                                    className='bets-table-cell'>{itemBet?.OCG?.[BETS_ODDS_GROUPS.DOUBLE_CHANCE]?.OC?.[DOUBLE_CHANCE_SELECTIONS.DRAW_OR_AWAY]?.O}</div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
