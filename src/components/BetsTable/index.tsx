@@ -7,7 +7,7 @@ import ImageLoading from '@/assets/images/loading.gif'
 
 import './styles.scss'
 import {BETS_TABLE_COLuMNS} from "@/components/BetsTable/constant";
-import {Fragment, useRef} from "react";
+import {CSSProperties, Fragment, useRef} from "react";
 import {useVirtualizer} from "@tanstack/react-virtual";
 
 declare let itemBetColumn: {
@@ -31,7 +31,7 @@ const BetsTable = () => {
     })
 
 
-    const rowVirtualizer = useVirtualizer({
+    const dataBetsVirtualizer = useVirtualizer({
         count: dataBets?.length,
         getScrollElement: () => containerRef.current,
         estimateSize: () => 50,
@@ -65,19 +65,19 @@ const BetsTable = () => {
                                     </For>
                                 </div>
                             </div>
-                            <div className="bets-table-body" style={{
-                                height: `${rowVirtualizer.getTotalSize()}px`,
-                                position: "relative",
-                            }}>
-                                <For each='virtualItemBet' of={rowVirtualizer.getVirtualItems()}>
+                            <div className="bets-table-body"
+                                 style={{
+                                '--total-height': `${dataBetsVirtualizer.getTotalSize()}px`
+                            } as CSSProperties}>
+                                <For each='virtualItemBet' of={dataBetsVirtualizer.getVirtualItems()}>
                                     <With itemBet={dataBets[virtualItemBet.index]}>
                                         <div
                                             className='bets-table-row-group'
-                                             key={itemBet.NID}
-                                             style={{
-                                                 height: `${virtualItemBet.size * 2}px`,
-                                                 transform: `translateY(${virtualItemBet.start * 2}px)`,
-                                             }}>
+                                            key={itemBet.NID}
+                                            style={{
+                                                "--row-top": `${virtualItemBet.start * 2}px`,
+                                                "--row-height": `${virtualItemBet?.size * 2}px`,
+                                            } as CSSProperties}>
                                             <div className='bets-table-row'>
                                                 <For each='itemBetColumn' of={BETS_TABLE_COLuMNS}>
                                                     <Choose>
@@ -98,19 +98,26 @@ const BetsTable = () => {
                                                 </div>
                                                 <div className='bets-table-cell'>Yorumlar</div>
                                                 <div className='bets-table-cell'>{itemBet?.['OCG']?.[1]?.['MBS']}</div>
-                                                <div className='bets-table-cell'>{itemBet?.['OCG']?.[1]?.['OC']?.[0]?.['O']}</div>
-                                                <div className='bets-table-cell'>{itemBet?.['OCG']?.[1]?.['OC']?.[1]?.['O']}</div>
+                                                <div
+                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[1]?.['OC']?.[0]?.['O']}</div>
+                                                <div
+                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[1]?.['OC']?.[1]?.['O']}</div>
                                                 <div className='bets-table-cell'></div>
-                                                <div className='bets-table-cell'>{itemBet?.['OCG']?.[5]?.['OC']?.[25]?.['O']}</div>
-                                                <div className='bets-table-cell'>{itemBet?.['OCG']?.[5]?.['OC']?.[26]?.['O']}</div>
+                                                <div
+                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[5]?.['OC']?.[25]?.['O']}</div>
+                                                <div
+                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[5]?.['OC']?.[26]?.['O']}</div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
-                                                <div className='bets-table-cell'>{itemBet?.['OCG']?.[2]?.['OC']?.[3]?.['O']}</div>
-                                                <div className='bets-table-cell'>{itemBet?.['OCG']?.[2]?.['OC']?.[4]?.['O']}</div>
-                                                <div className='bets-table-cell'>{itemBet?.['OCG']?.[2]?.['OC']?.[5]?.['O']}</div>
+                                                <div
+                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[2]?.['OC']?.[3]?.['O']}</div>
+                                                <div
+                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[2]?.['OC']?.[4]?.['O']}</div>
+                                                <div
+                                                    className='bets-table-cell'>{itemBet?.['OCG']?.[2]?.['OC']?.[5]?.['O']}</div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
                                                 <div className='bets-table-cell'></div>
