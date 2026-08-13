@@ -1,0 +1,31 @@
+.page-bets-table {
+  display: flex;
+  justify-content: center;
+  padding-block: 100px;
+  .loading {
+    border-radius: 100%;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    background: white;
+    img {
+      object-fit: none;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .bets-table {
+    animation: fadeIn 500ms ease forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
