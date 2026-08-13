@@ -76,7 +76,10 @@ const BetsTable = () => {
                                 <For each='virtualItemBet' of={dataBetsVirtualizer.getVirtualItems()}>
                                     <Fragment key={virtualItemBet.index}>
                                         <With itemBet={dataBets[virtualItemBet.index]}>
-                                            <BetsTableRow dataBet={itemBet} virtualItemBet={virtualItemBet}/>
+                                            <BetsTableRow
+                                                dataBet={itemBet}
+                                                rowStart={virtualItemBet.start}
+                                                rowSize={virtualItemBet.size}/>
                                         </With>
                                     </Fragment>
                                 </For>

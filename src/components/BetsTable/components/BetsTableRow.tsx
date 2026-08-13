@@ -12,12 +12,13 @@ import {ICartBet} from "@/redux/types";
 
 interface Props {
     dataBet: any
-    virtualItemBet: any
+    rowStart: number
+    rowSize: number
 }
 declare let itemBetColumn: IBetsTableColumns
 declare let indexBetColumn: number
 
-const BetsTableRow = memo(({ dataBet, virtualItemBet } : Props) => {
+const BetsTableRow = memo(({ dataBet, rowStart = 0, rowSize = 0 } : Props) => {
     const dispatch = useAppDispatch()
 
     const selectedBet = useAppSelector(state => state?.betsSlice?.bets?.find((bet: ICartBet) => bet?.NID === dataBet?.NID))
@@ -39,8 +40,8 @@ const BetsTableRow = memo(({ dataBet, virtualItemBet } : Props) => {
             className='bets-table-row-group'
             key={dataBet?.NID}
             style={{
-                "--row-top": `${virtualItemBet.start}px`,
-                "--row-height": `${virtualItemBet?.size}px`,
+                "--row-top": `${rowStart}px`,
+                "--row-height": `${rowSize}px`,
             } as CSSProperties}>
             <div className='bets-table-row'>
                 <For each='itemBetColumn' index='indexBetColumn' of={BETS_TABLE_COLuMNS}>
