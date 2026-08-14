@@ -13,36 +13,34 @@ const betsSlice = createSlice({
     initialState,
     reducers: {
         updateBet: (state, action) => {
-            const selectedBet = action?.payload;
-            const existsBet: any = state?.bets?.find((bet: ICartBet) => bet.NID === selectedBet.bet?.NID);
+            const {bet, betGroup, betSelection} = action.payload;
 
-            const addBet = () => {
-                const newBet: ICartBet = {
-                    NID: selectedBet.bet.NID,
-                    MBS: selectedBet.bet?.OCG?.[selectedBet.betGroup]?.MBS,
-                    match: selectedBet.bet.N,
-                    code: selectedBet.bet.C,
-                    odds: selectedBet.bet?.OCG?.[selectedBet.betGroup]?.OC[selectedBet.betSelection]?.O,
-                    betGroup: selectedBet.betGroup,
-                    betSelection: selectedBet.betSelection,
-                }
+            const existsBetIndex = state.bets.findIndex(
+                (item: ICartBet) => item.NID === bet.NID
+            );
+
+            const existsBet = state.bets[existsBetIndex];
+
+            const isSameBet = existsBet?.betGroup === betGroup && existsBet?.betSelection === betSelection
+
+            const newBet: ICartBet = {
+                NID: bet.NID,
+                MBS: bet?.OCG?.[betGroup]?.MBS,
+                match: bet.N,
+                code: bet.C,
+                odds: bet?.OCG?.[betGroup]?.OC?.[betSelection]?.O,
+                betGroup: betGroup,
+                betSelection: betSelection,
+            }
+
+            if(existsBetIndex === -1) {
                 state.bets.push(newBet);
-            }
-            const removeBet = () => {
-                state.bets = state?.bets.filter((bet) => bet.NID !== selectedBet.bet?.NID);
-            }
-
-            const isSameBet = existsBet?.betGroup === selectedBet.betGroup && existsBet?.betSelection === selectedBet.betSelection
-
-            if (existsBet) {
-                if (isSameBet) {
-                    removeBet()
-                } else {
-                    removeBet()
-                    addBet()
-                }
             } else {
-                addBet()
+                if(isSameBet) {
+                    state.bets.splice(existsBetIndex, 1);
+                } else {
+                    state.bets[existsBetIndex] = newBet;
+                }
             }
         }
     }
