@@ -32,9 +32,9 @@ const BetsTableRow = memo(({ dataBet, rowStart = 0, rowSize = 0 } : Props) => {
         dispatch(updateBet(payload))
     }
 
-    const isSelectedOdds = useCallback((betGroup: any, betSelection: any, ) => {
+    const isSelectedOdds = (betGroup: any, betSelection: any, ) => {
         return selectedBet && selectedBet?.betGroup === betGroup && selectedBet?.betSelection === betSelection
-    }, [selectedBet])
+    }
     return (
         <div
             className='bets-table-row-group'

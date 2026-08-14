@@ -46,7 +46,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: max-content;
       height: var(--row-height);
       transform: translateY(var(--row-top));
     }
@@ -60,7 +60,7 @@
       }
     }
     &-cell {
-      flex: 0 0 80px;
+      flex: 0 0 70px;
       min-height: 48px;
       border-right: 1px solid #2a2a2a;
       border-bottom: 1px solid #2a2a2a;
